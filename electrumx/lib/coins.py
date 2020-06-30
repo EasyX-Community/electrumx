@@ -383,7 +383,7 @@ class Pexacoin(Coin):
     
     PEERS = []
     
-    GENESIS_HASH = ( 'a0fe25098b8560b76e4c9fdd28117bd06709515a9ccbbc1fa578e4c0443c0d02' )
+    GENESIS_HASH = ( 'a0fe25098b8560b76e4c9fdd28117bd06709515a9ccbbc1fa578e' )
     
     @classmethod
     def header_hash(cls, header):
