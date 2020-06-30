@@ -336,6 +336,7 @@ class BitcoinSVRegtest(BitcoinSVTestnet):
 
 Bitcoin = BitcoinSV
 
+
 class Placeholders(Coin):
     NAME = "Placeh"
     SHORTNAME = "PHL"
@@ -360,3 +361,35 @@ class Placeholders(Coin):
         '''Given a header return the hash.'''
         import x16r_hash
         return x16r_hash.getPoWHash(header)
+
+    
+class Pexacoin(Coin):
+    NAME = "Pexacoin"
+    SHORTNAME = "PEXA"
+    NET = "mainnet"
+
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    RPC_PORT =8235
+    REORG_LIMIT = 2000
+    
+    TX_COUNT = 1
+    TX_COUNT_HEIGHT = 1
+    TX_PER_BLOCK = 1
+    X16RV2_ACTIVATION_TIME = 1568678400
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    MEMPOOL_HISTOGRAM_REFRESH_SECS = 120
+    PEERS = []
+    GENESIS_HASH = ( 'a0fe25098b8560b76e4c9fdd28117bd06709515a9ccbbc1fa578e4c0443c0d02' )
+    
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return the hash.'''
+        timestamp = util.unpack_le_uint32_from(header, 68)[0]
+        
+        if timestamp >= cls.X16RV2_ACTIVATION_TIME:
+            import x16rv2_hash
+            return x16rv2_hash.getPoWHash(header)
+        else:
+            import x16r_hash
+            return x16r_hash.getPoWHash(header)
+        
