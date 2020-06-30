@@ -370,15 +370,19 @@ class Pexacoin(Coin):
 
     DESERIALIZER = lib_tx.DeserializerSegWit
     RPC_PORT =8235
-    REORG_LIMIT = 2000
+    REORG_LIMIT = 100
     
     TX_COUNT = 1
     TX_COUNT_HEIGHT = 1
     TX_PER_BLOCK = 1
+    
     X16RV2_ACTIVATION_TIME = 1568678400
+    
     DESERIALIZER = lib_tx.DeserializerSegWit
     MEMPOOL_HISTOGRAM_REFRESH_SECS = 120
+    
     PEERS = []
+    
     GENESIS_HASH = ( 'a0fe25098b8560b76e4c9fdd28117bd06709515a9ccbbc1fa578e4c0443c0d02' )
     
     @classmethod
